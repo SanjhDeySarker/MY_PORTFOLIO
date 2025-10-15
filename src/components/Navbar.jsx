@@ -25,6 +25,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -36,9 +41,10 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-2xl font-heading font-bold text-primary-500">
-            DevPortfolio
+            Sanjh.dev
           </Link>
 
+          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <Link
@@ -59,6 +65,7 @@ const Navbar = () => {
             ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white"
             onClick={() => setIsOpen(!isOpen)}
@@ -67,6 +74,7 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -80,7 +88,7 @@ const Navbar = () => {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`py-2 px-4 rounded-lg transition-colors ${
+                  className={`py-2 px-4 rounded-lg transition-colors text-center ${
                     location.pathname === item.path
                       ? 'bg-primary-500 text-white'
                       : 'text-white hover:bg-dark-700'
