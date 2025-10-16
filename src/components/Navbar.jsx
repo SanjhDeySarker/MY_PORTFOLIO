@@ -16,8 +16,14 @@ const Navbar = () => {
     { name: 'Resume', path: '/resume' },
     { name: 'Contact', path: '/contact' },
   ];
-
+const [siteName, setSiteName] = useState(false);
   useEffect(() => {
+
+    setSiteName(function capitalizeCurrentHostname() {
+  const hostname = window.location.hostname;
+  if (!hostname || typeof hostname !== "string") return "";
+  return hostname.charAt(0).toUpperCase() + hostname.slice(1);
+}())
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -41,7 +47,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-2xl font-heading font-bold text-primary-500">
-            Sanjh.dev
+            {siteName}
           </Link>
 
           {/* Desktop Menu */}

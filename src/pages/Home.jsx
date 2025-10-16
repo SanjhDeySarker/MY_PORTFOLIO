@@ -32,7 +32,7 @@ const Home = () => {
               >
                 Hi, I'm{' '}
                 <span className="text-primary-500 bg-gradient-to-r from-primary-500 to-cyan-400 bg-clip-text text-transparent">
-                  Sanjh Dey Sarker
+                  Sanjh 
                 </span>
               </motion.h1>
               
